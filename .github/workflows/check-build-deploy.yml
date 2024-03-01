@@ -1,0 +1,35 @@
+name: Basic pipeline
+run-name: ${{ github.actor }} is pushed another piece of code
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install modules
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        
+      - name: Deploy 🚀
+        uses: MaxOldgood/github-pages-deploy-action@3.7.1
+        with:
+          # в значение GITHUB_TOKEN помещается ссылка на ваш секрет в репозитории
+          # в данном случае его название KEY
+          GITHUB_TOKEN: ${{ secrets.TOKEN   }}
+          BRANCH: main
+          FOLDER: public
+          CLEAN: true
