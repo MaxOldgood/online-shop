@@ -4,7 +4,7 @@
   "singleQuote": true,
   "printWidth": 120,
   "semi": false,
-  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
